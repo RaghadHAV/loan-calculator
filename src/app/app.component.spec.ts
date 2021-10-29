@@ -40,8 +40,6 @@ describe('AppComponent', () => {
 });
 
 describe('HttpClient testing', () => {
-  let url = 'https://homework.fdp.workers.dev/';
-
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, HttpClientModule, FormsModule],
