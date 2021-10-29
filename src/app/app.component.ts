@@ -15,11 +15,6 @@ export class AppComponent {
   title = 'Loan Calculator';
   loanAmount = 0;
   interestRate = 0;
-  // monthlyIncomeField = 44;
-  // requestedAmountField = 0;
-  // loanTermField = 0;
-  // childrenField = "";
-  // coapplicantField = "";
   errorMessege = '';
   showBtn = false;
 

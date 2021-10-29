@@ -40,9 +40,6 @@ describe('AppComponent', () => {
 });
 
 describe('HttpClient testing', () => {
-  // let httpClient: HttpClient;
-  // let httpTestingController: HttpTestingController;
-  // let httpMock: HttpTestingController;
   let url = 'https://homework.fdp.workers.dev/';
 
   beforeEach(async () => {
@@ -61,15 +58,6 @@ describe('HttpClient testing', () => {
       monthlyIncome: 500000, requestedAmount: 20000000,
       loanTerm: 36, children: "NONE", coapplicant: "NONE"
     }
-    // httpClient.post<any>(`https://homework.fdp.workers.dev/`, sentData).subscribe(data => {
-    //   expect(data).toEqual(responseData)
-    // })
-    // const fixture = TestBed.createComponent(AppComponent);
-    // fixture.detectChanges();
-    // const app = fixture.debugElement.componentInstance;
-    // let stub = fixture.debugElement.injector.get(AppComponent)
-    // app.SubmitFunction();
-
   
   })
 });

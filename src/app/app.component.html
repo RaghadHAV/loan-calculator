@@ -12,7 +12,6 @@
     <pre></pre>
     <div>
       <label for="mi">Monthly Income</label> <br>
-      <!-- <input required minlength="3" type="text" name ="mi" ngModel/> -->
       <input type="text" required type="number" min="500000" name="monthlyIncomeField" #monthlyIncomeField="ngModel"
         ngModel />
       <small *ngIf="monthlyIncomeField.touched && !monthlyIncomeField.valid"> The minimun value is 500000 </small>
@@ -55,14 +54,12 @@
     </div>
 
     <button [disabled]="!calculateLoanForm.valid" id="saveBtn">Save</button>
-    <!-- <button>Save</button> -->
 
     <div *ngIf="errorMessege">
       <p>{{errorMessege}}</p>
     </div>
 
   </form>
-  <!-- <div *ngIf="monthlyIncome.errors?.required"> The field Monthly Income is required</div> -->
   <div *ngIf="!errorMessege && showBtn " class="resultClass">
     <p>
       The Loan Amount you can have is: {{loanAmount}}
