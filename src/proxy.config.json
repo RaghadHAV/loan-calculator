@@ -1,0 +1,7 @@
+{
+    "/api/*": {
+        "target": "https://homework.fdp.workers.dev/",
+        "secure": false,
+        "logLevel": "debug"
+    }
+}

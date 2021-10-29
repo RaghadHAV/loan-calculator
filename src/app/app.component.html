@@ -1,0 +1,75 @@
+
+<div class="toolbar" role="banner">
+ 
+  <div class="spacer"> Loan Calculator </div>
+</div>
+
+<div class="content" role="main">
+  <h2>{{title}}</h2>
+  <p>Please insert the follwoing information:</p>
+
+  <form #calculateLoanForm="ngForm" (ngSubmit)="SubmitFunction(calculateLoanForm);">
+    <pre></pre>
+    <div>
+      <label for="mi">Monthly Income</label> <br>
+      <!-- <input required minlength="3" type="text" name ="mi" ngModel/> -->
+      <input type="text" required type="number" min="500000" name="monthlyIncomeField" #monthlyIncomeField="ngModel"
+        ngModel />
+      <small *ngIf="monthlyIncomeField.touched && !monthlyIncomeField.valid"> The minimun value is 500000 </small>
+
+    </div>
+    <pre></pre>
+    <div>
+      <label for="ra">Requested Amount</label> <br>
+      <input required type="number" min="20000000" name="requestedAmountField" #requestedAmountField="ngModel" ngModel>
+      <small *ngIf="requestedAmountField.touched && !requestedAmountField.valid"> The minimun value is 20000000 </small>
+
+    </div>
+    <pre></pre>
+    <div>
+      <label for="lt">Loan Term in Months</label> <br>
+      <input required name="loanTermField" min="36" max="360" #loanTermField="ngModel" ngModel>
+      <small *ngIf="loanTermField.touched && !loanTermField.valid"> Please enter number of months between 36 and
+        360</small>
+    </div>
+    <pre></pre>
+    <div>
+      <label for="child">Children</label> <br>
+      <select required name="childrenField" #childrenField="ngModel" ngModel>
+        <option value="NONE">NONE</option>
+        <option value="SINGLE">SINGLE</option>
+        <option value="MULTIPLE">MULTIPLE</option>
+      </select>
+      <small *ngIf="childrenField.touched && !childrenField.valid"> This Filed is required</small>
+    </div>
+    <pre></pre>
+    <div>
+      <label for="co">Coapplicant</label> <br>
+      <select required name="coapplicantField" #coapplicantField="ngModel" ngModel>
+        <option value="NONE">NONE</option>
+        <option value="SINGLE_BORROWER">SINGLE BORROWER</option>
+        <option value="MULTIPLE_BORROWERS">MULTIPLE BORROWERS</option>
+      </select>
+      <small *ngIf="coapplicantField.touched && !coapplicantField.valid"> This Filed is required</small>
+
+    </div>
+
+    <button [disabled]="!calculateLoanForm.valid" id="saveBtn">Save</button>
+    <!-- <button>Save</button> -->
+
+    <div *ngIf="errorMessege">
+      <p>{{errorMessege}}</p>
+    </div>
+
+  </form>
+  <!-- <div *ngIf="monthlyIncome.errors?.required"> The field Monthly Income is required</div> -->
+  <div *ngIf="!errorMessege && showBtn " class="resultClass">
+    <p>
+      The Loan Amount you can have is: {{loanAmount}}
+    </p>
+    <p>
+      The Interest rate is: {{interestRate}}
+    </p>
+  </div>
+
+</div>
