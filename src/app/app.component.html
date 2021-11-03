@@ -54,12 +54,10 @@
     </div>
 
     <button id="saveBtn">Save</button>
-
-    <div *ngIf="errorMessege">
-      <p>{{errorMessege}}</p>
-    </div>
-
   </form>
+  <div *ngIf="errorMessege">
+    <p id="errorMsg">{{errorMessege}}</p>
+  </div>
   <div *ngIf="!errorMessege && showBtn " class="resultClass">
     <p>
       The Loan Amount you can have is: {{loanAmount}}

@@ -156,6 +156,14 @@ input.ng-touched.ng-invalid{
   font-size: 15px;
  
 }
+#errorMsg{
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid #ccc;
+  color: #ba3939;
+  background: #ffe0e0;
+  border: 1px solid #a33a3a;
+}
   /* Responsive Styles */
   @media screen and (max-width: 767px) {
 

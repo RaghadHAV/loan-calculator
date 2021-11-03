@@ -31,17 +31,17 @@ export class AppComponent {
 
   SubmitData(body: any) {
     return this.http.post<any>(this.targetUrl, body, this.httpOptions)
-    .pipe(catchError(this.handleError))
+      .pipe(catchError(this.handleError))
   }
 
   SubmitFunction(calculateLoanForm: NgForm) {
     this.showBtn = true;
     // console.log("calculateLoanForm.value.childrenField", calculateLoanForm.value.childrenField)
     const body = {
-      "monthlyIncome": calculateLoanForm.value.monthlyIncomeField, 
+      "monthlyIncome": calculateLoanForm.value.monthlyIncomeField,
       "requestedAmount": calculateLoanForm.value.requestedAmountField,
-      "loanTerm": calculateLoanForm.value.loanTermField, 
-      "children": calculateLoanForm.value.childrenField, 
+      "loanTerm": calculateLoanForm.value.loanTermField,
+      "children": calculateLoanForm.value.childrenField,
       "coapplicant": calculateLoanForm.value.coapplicantField
     }
 
@@ -63,9 +63,9 @@ export class AppComponent {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong.
       console.error(`Backend returned code ${error.status}, body was: `, error.error);
-      errorMessege = `Backend returned code ${error.status}, body was: `, error.error;
+      errorMessege = `Backend returned code ${error.status}, body was: ${error.error.fields.map((e:any)=> {return e.message})}`;
     }
-    errorMessege += ' Something bad happened; please try again later.';
+    errorMessege += '. Something bad happened; please try again later.';
     // Return an observable with a user-facing error message.
     return throwError(errorMessege);
   }
