@@ -70,13 +70,13 @@ describe('AppComponent', () => {
     const responseData = { status: 404 }
 
     httpClient.post<Data>(app.targetUrl, submittedData, app.httpOptions)
-      .subscribe(data => console.log(data));
+      .subscribe(data => expect(data).toEqual(responseData));
 
     const req = httpTestingController.expectOne(app.targetUrl);
     expect(req.request.method).toEqual('POST');
     req.flush(responseData);
 
-    httpTestingController.verify();
+    httpTestingController.verify(); 
   });
 
   it('Should Submit the data and return the Loan Amount and Interest Rate', () => {

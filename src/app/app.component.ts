@@ -18,10 +18,10 @@ export class AppComponent {
   title = 'Loan Calculator';
   loanAmount = 0;
   interestRate = 0;
-  errorMessege = '';
+  validationMessege = '';
   showBtn = false;
   targetUrl = 'http://localhost:4200/api'
-
+  errorMessege =''
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -33,9 +33,14 @@ export class AppComponent {
     return this.http.post<any>(this.targetUrl, body, this.httpOptions)
       .pipe(catchError(this.handleError))
   }
-
+  validateInput(body: any) {
+    if (body.monthlyIncome < 500000){
+      this.validationMessege =`Must Be bigger than ${body.monthlyIncome}`;
+    }
+  }
   SubmitFunction(calculateLoanForm: NgForm) {
     this.showBtn = true;
+
     // console.log("calculateLoanForm.value.childrenField", calculateLoanForm.value.childrenField)
     const body = {
       "monthlyIncome": calculateLoanForm.value.monthlyIncomeField,
@@ -44,7 +49,8 @@ export class AppComponent {
       "children": calculateLoanForm.value.childrenField,
       "coapplicant": calculateLoanForm.value.coapplicantField
     }
-
+    console.log("body monthly incode", body.monthlyIncome)
+    this.validateInput(body);
     return this.SubmitData(body).subscribe(data => {
       console.log("data", data)
       this.loanAmount = data.loanAmount;
@@ -63,7 +69,7 @@ export class AppComponent {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong.
       console.error(`Backend returned code ${error.status}, body was: `, error.error);
-      errorMessege = `Backend returned code ${error.status}, body was: ${error.error.fields.map((e:any)=> {return e.message})}`;
+      errorMessege = `Backend returned code ${error.status}, body was: ${error.error.fields.map((e: any) => { return e.message })}`;
     }
     errorMessege += '. Something bad happened; please try again later.';
     // Return an observable with a user-facing error message.
